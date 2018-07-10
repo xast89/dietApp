@@ -11,8 +11,8 @@ import pl.gondek.dietapplication.FoodList;
 import pl.gondek.dietapplication.ReactionList;
 import pl.gondek.dietapplication.model.Incident;
 import pl.gondek.dietapplication.model.Meal;
-import pl.gondek.dietapplication.repository.TemporaryIncidentRepository;
-import pl.gondek.dietapplication.repository.TemporaryMealRepository;
+import pl.gondek.dietapplication.repository.IncidentRepository;
+import pl.gondek.dietapplication.repository.MealRepository;
 import pl.gondek.dietapplication.utils.AllergensFinder;
 
 import java.util.List;
@@ -21,9 +21,9 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private TemporaryMealRepository temporaryMealRepository;
+    private MealRepository mealRepository;
     @Autowired
-    private TemporaryIncidentRepository temporaryIncidentRepository;
+    private IncidentRepository incidentRepository;
     @Autowired
     private AllergensFinder allergensFinder;
 
@@ -48,8 +48,7 @@ public class MainController {
     @PostMapping(value = "/addMeal")
     public String addMeal(@ModelAttribute Meal meal, BindingResult errors, Model model) {
 
-        temporaryMealRepository.addMeal(meal);
-
+        mealRepository.save(meal);
         return "login";
     }
 
@@ -64,7 +63,7 @@ public class MainController {
     @PostMapping(value = "/addReaction")
     public String addReaction(@ModelAttribute Incident incident, BindingResult errors, Model model) {
 
-        temporaryIncidentRepository.addIncydent(incident);
+        incidentRepository.save(incident);
 
         return "login";
     }
@@ -72,7 +71,7 @@ public class MainController {
     @GetMapping("/findAllergens")
     public String findAllergens(Model model) {
 
-        List<Meal> allergens = allergensFinder.findAllergens(temporaryMealRepository, temporaryIncidentRepository);
+        List<Meal> allergens = allergensFinder.findAllergens(mealRepository, incidentRepository);
 
         model.addAttribute("reactions", new ReactionList());
         model.addAttribute("incident", new Incident());

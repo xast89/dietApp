@@ -3,8 +3,8 @@ package pl.gondek.dietapplication.utils;
 import org.springframework.stereotype.Component;
 import pl.gondek.dietapplication.model.Incident;
 import pl.gondek.dietapplication.model.Meal;
-import pl.gondek.dietapplication.repository.TemporaryIncidentRepository;
-import pl.gondek.dietapplication.repository.TemporaryMealRepository;
+import pl.gondek.dietapplication.repository.IncidentRepository;
+import pl.gondek.dietapplication.repository.MealRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +12,13 @@ import java.util.List;
 @Component
 public class AllergensFinder {
 
-    public List<Meal> findAllergens(TemporaryMealRepository temporaryMealRepository, TemporaryIncidentRepository temporaryIncidentRepository)
+    public List<Meal> findAllergens(MealRepository temporaryMealRepository, IncidentRepository incidentRepository)
     {
         List<Meal> results = new ArrayList<>();
 
-        for (Meal meal : temporaryMealRepository.getMeals()) {
+        for (Meal meal : temporaryMealRepository.findAll()) {
 
-            for (Incident incident : temporaryIncidentRepository.getIncidents()) {
+            for (Incident incident : incidentRepository.findAll()) {
 
                 if(incident.getStart().equals(meal.getStart()))
                 {
