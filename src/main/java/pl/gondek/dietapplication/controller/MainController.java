@@ -49,7 +49,7 @@ public class MainController {
     public String addMeal(@ModelAttribute Meal meal, BindingResult errors, Model model) {
 
         mealRepository.save(meal);
-        return "login";
+        return "login222";
     }
 
     @GetMapping("/addReaction")
@@ -65,7 +65,7 @@ public class MainController {
 
         incidentRepository.save(incident);
 
-        return "login";
+        return "login222";
     }
 
     @GetMapping("/findAllergens")
@@ -78,5 +78,10 @@ public class MainController {
         model.addAttribute("allergens", allergens);
 
         return "findAllergens";
+    }
+
+    @GetMapping("/loginn")
+    public String logInn() {
+        return "login222";
     }
 }
