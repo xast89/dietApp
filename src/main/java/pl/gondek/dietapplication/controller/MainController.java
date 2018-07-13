@@ -84,4 +84,9 @@ public class MainController {
     public String logInn() {
         return "login222";
     }
+
+    @GetMapping("/signUp")
+    public String signUp() {
+        return "signUp";
+    }
 }
