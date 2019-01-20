@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.gondek.dietapplication.FoodList;
-import pl.gondek.dietapplication.ReactionList;
+import pl.gondek.dietapplication.defaults.FoodList;
+import pl.gondek.dietapplication.defaults.ReactionList;
 import pl.gondek.dietapplication.model.Incident;
 import pl.gondek.dietapplication.model.Meal;
 import pl.gondek.dietapplication.repository.IncidentRepository;
@@ -27,17 +27,17 @@ public class MainController {
     @Autowired
     private AllergensFinder allergensFinder;
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/login")
-    public String logIn() {
+    @GetMapping()
+    public String login() {
         return "login";
     }
 
-    @GetMapping("/addMeal")
+    @GetMapping("/webjars")
+    public String logIn() {
+        return "redirect:/menu";
+    }
+
+        @GetMapping("/addMeal")
     public String addMeal(Model model) {
         model.addAttribute("foods", new FoodList());
         model.addAttribute("meal", new Meal());
@@ -49,7 +49,7 @@ public class MainController {
     public String addMeal(@ModelAttribute Meal meal, BindingResult errors, Model model) {
 
         mealRepository.save(meal);
-        return "login222";
+        return "menu";
     }
 
     @GetMapping("/addReaction")
@@ -65,7 +65,7 @@ public class MainController {
 
         incidentRepository.save(incident);
 
-        return "login222";
+        return "menu";
     }
 
     @GetMapping("/findAllergens")
@@ -80,9 +80,9 @@ public class MainController {
         return "findAllergens";
     }
 
-    @GetMapping("/loginn")
-    public String logInn() {
-        return "login222";
+    @GetMapping("/menu")
+    public String menu() {
+        return "menu";
     }
 
     @GetMapping("/signUp")

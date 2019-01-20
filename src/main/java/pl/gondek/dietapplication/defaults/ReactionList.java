@@ -1,4 +1,4 @@
-package pl.gondek.dietapplication;
+package pl.gondek.dietapplication.defaults;
 
 import pl.gondek.dietapplication.model.Reaction;
 
