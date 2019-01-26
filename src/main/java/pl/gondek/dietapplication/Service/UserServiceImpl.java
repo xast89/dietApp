@@ -1,8 +1,6 @@
 package pl.gondek.dietapplication.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.UserRepository;
@@ -11,12 +9,12 @@ import pl.gondek.dietapplication.repository.UserRepository;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    private PasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setPassword(user.getPassword());
         userRepository.save(user);
     }

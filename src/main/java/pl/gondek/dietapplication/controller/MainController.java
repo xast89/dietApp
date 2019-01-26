@@ -7,12 +7,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.gondek.dietapplication.Service.UserServiceImpl;
 import pl.gondek.dietapplication.defaults.FoodList;
 import pl.gondek.dietapplication.defaults.ReactionList;
 import pl.gondek.dietapplication.model.Incident;
 import pl.gondek.dietapplication.model.Meal;
+import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.IncidentRepository;
 import pl.gondek.dietapplication.repository.MealRepository;
+import pl.gondek.dietapplication.repository.UserRepository;
 import pl.gondek.dietapplication.utils.AllergensFinder;
 
 import java.util.List;
@@ -26,10 +29,33 @@ public class MainController {
     private IncidentRepository incidentRepository;
     @Autowired
     private AllergensFinder allergensFinder;
+    @Autowired
+    private UserServiceImpl userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping()
-    public String login() {
-        return "login";
+    public String login(Model model) {
+
+        model.addAttribute("user", new User());
+
+        return "registerAndLogin/login";
+    }
+
+    @PostMapping()
+    public String loginPost(@ModelAttribute() User userForRegister) {
+
+        User userForLogin = userRepository.findByUsernameAndPassword(userForRegister.getUsername(), userForRegister.getPassword());
+
+        if(userForLogin != null)
+        {
+            return "menu";
+        }
+        else
+        {
+            return "login";
+        }
+
     }
 
     @GetMapping("/webjars")
@@ -85,8 +111,5 @@ public class MainController {
         return "menu";
     }
 
-    @GetMapping("/signUp")
-    public String signUp() {
-        return "signUp";
-    }
+
 }

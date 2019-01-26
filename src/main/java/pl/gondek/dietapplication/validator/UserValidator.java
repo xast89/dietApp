@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 import pl.gondek.dietapplication.Service.UserService;
 import pl.gondek.dietapplication.model.User;
 
-@Component
+//@Component
 public class UserValidator implements Validator {
     @Autowired
     private UserService userService;

@@ -12,16 +12,16 @@ import pl.gondek.dietapplication.Service.UserService;
 import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.validator.UserValidator;
 
-@Controller
+//@Controller
 public class UserController {
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
-    @Autowired
-    private SecurityService securityService;
+//    @Autowired
+//    private SecurityService securityService;
 
-    @Autowired
-    private UserValidator userValidator;
+//    @Autowired
+//    private UserValidator userValidator;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -32,15 +32,15 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        userValidator.validate(userForm, bindingResult);
+//        userValidator.validate(userForm, bindingResult);
 
 //        if (bindingResult.hasErrors()) {
 //            return "registration";
 //        }
 
-        userService.save(userForm);
+//        userService.save(userForm);
 
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+//        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/welcome";
     }
