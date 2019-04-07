@@ -8,7 +8,7 @@
 
 <div class="container">
 
-    <form id="registrationform" class="form-horizontal" role="form" th:action="@{/registration}" method="post">
+    <form post_id="registrationform" class="form-horizontal" role="form" th:action="@{/registration}" method="post">
         <h2 class="form-signin-heading">Create your account</h2>
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <input type="text" class="form-control" placeholder="Username" name="username"

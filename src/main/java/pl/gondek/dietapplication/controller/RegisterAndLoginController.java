@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.gondek.dietapplication.model.Security;
 import pl.gondek.dietapplication.model.User;
+import pl.gondek.dietapplication.processor.SignUpProcessor;
 import pl.gondek.dietapplication.repository.UserRepository;
 import pl.gondek.dietapplication.utils.SignInHelper;
 import pl.gondek.dietapplication.utils.SignUpHelper;
@@ -21,41 +23,37 @@ public class RegisterAndLoginController {
     @Autowired
     private SignUpHelper signUpHelper;
 
+    @Autowired
+    private SignUpProcessor signUpProcessor;
+
 
     @GetMapping("/signUp")
     public String signUpGet(Model model) {
 
-        model.addAttribute("user", new User());
+        model.addAttribute("security", new Security());
 
         return "registerAndLogin/signUp";
     }
 
     @PostMapping("/signUp")
-    public String signUpPost(@ModelAttribute User user)
+    public String signUpPost(@ModelAttribute Security security, Model model)
     {
 
-        if(signUpHelper.shouldBeRegister(userRepository, user))
-        {
-            //TODO: work around :) - delete setPasswordConfirm
-            user.setPasswordConfirm(user.getPassword());
-            userRepository.save(user);
-            return "registerAndLogin/login";
-        }
-        else
-        {
-            return "registerAndLogin/signUp";
-        }
+        model.addAttribute("user", new Security());
+        return signUpProcessor.signUp(security);
+
     }
 
     @PostMapping("/signIn")
-    public String signInPost(@ModelAttribute User user)
+    public String signInPost(@ModelAttribute Security userForLogin, Model model)
     {
-        if(signInHelper.shouldBeLogged(userRepository, user))
+        if(signInHelper.shouldBeLogged(userForLogin))
         {
             return "signIn/userPage";
         }
         else
         {
+            model.addAttribute("user", new Security());
             return "registerAndLogin/login";
         }
 

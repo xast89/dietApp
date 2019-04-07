@@ -7,18 +7,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.gondek.dietapplication.Service.UserServiceImpl;
 import pl.gondek.dietapplication.defaults.FoodList;
 import pl.gondek.dietapplication.defaults.ReactionList;
 import pl.gondek.dietapplication.model.Incident;
 import pl.gondek.dietapplication.model.Meal;
+import pl.gondek.dietapplication.model.Security;
 import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.IncidentRepository;
 import pl.gondek.dietapplication.repository.MealRepository;
 import pl.gondek.dietapplication.repository.UserRepository;
 import pl.gondek.dietapplication.utils.AllergensFinder;
+import pl.gondek.dietapplication.utils.Context;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -30,14 +32,14 @@ public class MainController {
     @Autowired
     private AllergensFinder allergensFinder;
     @Autowired
-    private UserServiceImpl userService;
-    @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private Context context;
 
     @GetMapping()
     public String login(Model model) {
 
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new Security());
 
         return "registerAndLogin/login";
     }
@@ -45,9 +47,10 @@ public class MainController {
     @PostMapping()
     public String loginPost(@ModelAttribute() User userForRegister) {
 
-        User userForLogin = userRepository.findByUsernameAndPassword(userForRegister.getUsername(), userForRegister.getPassword());
+//        User userForLogin = userRepository.findByUsernameAndPassword(userForRegister.getUsername(), userForRegister.getSecurity().getPassword());
 
-        if(userForLogin != null)
+//        if(userForLogin != null)
+        if(true)
         {
             return "menu";
         }
@@ -72,9 +75,15 @@ public class MainController {
     }
 
     @PostMapping(value = "/addMeal")
-    public String addMeal(@ModelAttribute Meal meal, BindingResult errors, Model model) {
+    public String addMeal(@ModelAttribute Meal meal, BindingResult errors, Model model)
+    {
 
-        mealRepository.save(meal);
+        meal.setUser(context.getCurrentUser());
+
+        Set<Meal> meals = context.getCurrentUser().getMeals();
+
+        Meal save = mealRepository.save(meal);
+
         return "menu";
     }
 

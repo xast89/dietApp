@@ -1,42 +1,78 @@
 package pl.gondek.dietapplication.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import pl.gondek.dietapplication.model.oneToMany.Items;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "APP_USER")
+@Table(name = "USER")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
-    private String username;
-    private String password;
-    private String passwordConfirm;
+    private String name;
+    private String age;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "SECURITY_ID", referencedColumnName = "SECURITY_ID")
+    private Security security;
 
 
-    public String getUsername() {
-        return username;
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy="user")
+    private Set<Meal> meals;
+
+
+    public Security getSecurity()
+    {
+        return security;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setSecurity(Security security)
+    {
+        this.security = security;
     }
 
-    public String getPassword() {
-        return password;
+    public long getUserId()
+    {
+        return userId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserId(long userId)
+    {
+        this.userId = userId;
     }
 
-    @Transient
-    public String getPasswordConfirm() {
-        return passwordConfirm;
+    public String getName()
+    {
+        return name;
     }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
+    public String getAge()
+    {
+        return age;
+    }
+
+    public void setAge(String age)
+    {
+        this.age = age;
+    }
+
+    public Set<Meal> getMeals()
+    {
+        return meals;
+    }
+
+    public void setMeals(Set<Meal> meals)
+    {
+        this.meals = meals;
+    }
 }

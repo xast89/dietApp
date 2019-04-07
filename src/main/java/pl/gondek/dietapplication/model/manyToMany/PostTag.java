@@ -27,35 +27,35 @@ public class PostTag {
 //    public PostTag(Post post, Tag tag) {
 //        this.post = post;
 //        this.tag = tag;
-//        this.id = new PostTagId(post.getId(), tag.getId());
+//        this.id = new PostTagId(post.getTag_id(), tag.getTag_id());
 //    }
 //
-//    public PostTagId getId()
+//    public PostTagId getTag_id()
 //    {
 //        return id;
 //    }
 //
-//    public void setId(PostTagId id)
+//    public void setTag_id(PostTagId id)
 //    {
 //        this.id = id;
 //    }
 //
-//    public Post getPost()
+//    public Post getUser()
 //    {
 //        return post;
 //    }
 //
-//    public void setPost(Post post)
+//    public void setUser(Post post)
 //    {
 //        this.post = post;
 //    }
 //
-//    public Tag getTag()
+//    public Tag getMeal()
 //    {
 //        return tag;
 //    }
 //
-//    public void setTag(Tag tag)
+//    public void setMeal(Tag tag)
 //    {
 //        this.tag = tag;
 //    }
