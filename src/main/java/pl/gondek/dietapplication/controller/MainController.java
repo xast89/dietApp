@@ -37,7 +37,8 @@ public class MainController {
     private Context context;
 
     @GetMapping()
-    public String login(Model model) {
+    public String login(Model model)
+    {
 
         model.addAttribute("user", new Security());
 
@@ -45,16 +46,16 @@ public class MainController {
     }
 
     @PostMapping()
-    public String loginPost(@ModelAttribute() User userForRegister) {
+    public String loginPost(@ModelAttribute() User userForRegister)
+    {
 
 //        User userForLogin = userRepository.findByUsernameAndPassword(userForRegister.getUsername(), userForRegister.getSecurity().getPassword());
 
 //        if(userForLogin != null)
-        if(true)
+        if (true)
         {
             return "menu";
-        }
-        else
+        } else
         {
             return "login";
         }
@@ -62,12 +63,14 @@ public class MainController {
     }
 
     @GetMapping("/webjars")
-    public String logIn() {
+    public String logIn()
+    {
         return "redirect:/menu";
     }
 
-        @GetMapping("/addMeal")
-    public String addMeal(Model model) {
+    @GetMapping("/addMeal")
+    public String addMeal(Model model)
+    {
         model.addAttribute("foods", new FoodList());
         model.addAttribute("meal", new Meal());
 
@@ -88,7 +91,8 @@ public class MainController {
     }
 
     @GetMapping("/addReaction")
-    public String addReaction(Model model) {
+    public String addReaction(Model model)
+    {
         model.addAttribute("reactions", new ReactionList());
         model.addAttribute("incident", new Incident());
 
@@ -96,7 +100,8 @@ public class MainController {
     }
 
     @PostMapping(value = "/addReaction")
-    public String addReaction(@ModelAttribute Incident incident, BindingResult errors, Model model) {
+    public String addReaction(@ModelAttribute Incident incident, BindingResult errors, Model model)
+    {
 
         incidentRepository.save(incident);
 
@@ -104,7 +109,8 @@ public class MainController {
     }
 
     @GetMapping("/findAllergens")
-    public String findAllergens(Model model) {
+    public String findAllergens(Model model)
+    {
 
         List<Meal> allergens = allergensFinder.findAllergens(mealRepository, incidentRepository);
 
@@ -116,7 +122,8 @@ public class MainController {
     }
 
     @GetMapping("/menu")
-    public String menu() {
+    public String menu()
+    {
         return "menu";
     }
 

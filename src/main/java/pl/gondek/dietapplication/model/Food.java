@@ -4,15 +4,18 @@ public class Food {
 
     private String name;
 
-    public Food(String name) {
+    public Food(String name)
+    {
         this.name = name;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 

@@ -20,19 +20,23 @@ public class Incident {
 
     private String reaction;
 
-    public String getReaction() {
+    public String getReaction()
+    {
         return reaction;
     }
 
-    public void setReaction(String reaction) {
+    public void setReaction(String reaction)
+    {
         this.reaction = reaction;
     }
 
-    public Date getStart() {
+    public Date getStart()
+    {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(Date start)
+    {
         this.start = start;
     }
 }

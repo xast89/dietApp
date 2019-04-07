@@ -10,16 +10,16 @@
 
     <form post_id="registrationform" class="form-horizontal" role="form" th:action="@{/registration}" method="post">
         <h2 class="form-signin-heading">Create your account</h2>
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <input type="text" class="form-control" placeholder="Username" name="username"
-                            autofocus="autofocus"/>
+        <div class="form-group ${status.error ? 'has-error' : ''}">
+            <input type="text" class="form-control" placeholder="Username" name="username"
+                   autofocus="autofocus"/>
 
 
-                <input type="password" name="password" class="form-control" placeholder="Password"/>
+            <input type="password" name="password" class="form-control" placeholder="Password"/>
 
-                <input type="password" name="passwordConfirm" class="form-control"
-                            placeholder="Confirm your password"/>
-            </div>
+            <input type="password" name="passwordConfirm" class="form-control"
+                   placeholder="Confirm your password"/>
+        </div>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form>

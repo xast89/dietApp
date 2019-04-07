@@ -19,7 +19,7 @@ public class SignUpHelper {
     {
         Security byLogin = securityRepository.findByLogin(login);
 
-        if(byLogin !=null)
+        if (byLogin != null)
         {
 //            User s1 = userRepository.findBySecurity_SecurityId(byLogin.getSecurityId());
             User s2 = userRepository.findBySecurity_SecurityId(Long.valueOf(byLogin.getSecurityId()));
@@ -28,8 +28,7 @@ public class SignUpHelper {
 //            User s4 = userRepository.findBySecurityId(byLogin.getSecurityId());
 
             return s2;
-        }
-        else
+        } else
         {
             return null;
         }

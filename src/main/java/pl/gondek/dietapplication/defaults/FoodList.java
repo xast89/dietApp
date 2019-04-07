@@ -11,18 +11,21 @@ public class FoodList {
     private List<Food> foods;
     private List<String> str = new ArrayList<>();
 
-    public FoodList() {
+    public FoodList()
+    {
         this.foods = Arrays.asList(new Food("milk"), new Food("eggs"), new Food("nuts"), new Food("seafood"), new Food("soy"));
         this.str.add("strZiemniak");
         this.str.add("strMleko");
 
     }
 
-    public List<Food> getFoods() {
+    public List<Food> getFoods()
+    {
         return foods;
     }
 
-    public List<String> getStr() {
+    public List<String> getStr()
+    {
         return str;
     }
 }

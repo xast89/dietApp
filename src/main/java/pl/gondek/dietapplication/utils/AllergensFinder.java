@@ -16,11 +16,13 @@ public class AllergensFinder {
     {
         List<Meal> results = new ArrayList<>();
 
-        for (Meal meal : temporaryMealRepository.findAll()) {
+        for (Meal meal : temporaryMealRepository.findAll())
+        {
 
-            for (Incident incident : incidentRepository.findAll()) {
+            for (Incident incident : incidentRepository.findAll())
+            {
 
-                if(incident.getStart().equals(meal.getStart()))
+                if (incident.getStart().equals(meal.getStart()))
                 {
                     results.add(meal);
                 }

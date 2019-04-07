@@ -1,7 +1,6 @@
 package pl.gondek.dietapplication.model;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import pl.gondek.dietapplication.model.oneToMany.Items;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -22,7 +21,7 @@ public class User {
 
 
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<Meal> meals;
 
 

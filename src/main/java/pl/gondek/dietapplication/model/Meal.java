@@ -2,7 +2,6 @@ package pl.gondek.dietapplication.model;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.format.annotation.DateTimeFormat;
-import pl.gondek.dietapplication.model.oneToMany.Cart;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,7 +21,7 @@ public class Meal {
 
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public long getMeal_id()
@@ -35,19 +34,23 @@ public class Meal {
         this.meal_id = meal_id;
     }
 
-    public String getDish() {
+    public String getDish()
+    {
         return dish;
     }
 
-    public void setDish(String dish) {
+    public void setDish(String dish)
+    {
         this.dish = dish;
     }
 
-    public Date getStart() {
+    public Date getStart()
+    {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(Date start)
+    {
         this.start = start;
     }
 

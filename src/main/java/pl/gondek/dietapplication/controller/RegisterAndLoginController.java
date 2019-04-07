@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.gondek.dietapplication.model.Security;
-import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.processor.SignUpProcessor;
 import pl.gondek.dietapplication.repository.UserRepository;
 import pl.gondek.dietapplication.utils.SignInHelper;
@@ -28,7 +27,8 @@ public class RegisterAndLoginController {
 
 
     @GetMapping("/signUp")
-    public String signUpGet(Model model) {
+    public String signUpGet(Model model)
+    {
 
         model.addAttribute("security", new Security());
 
@@ -47,11 +47,10 @@ public class RegisterAndLoginController {
     @PostMapping("/signIn")
     public String signInPost(@ModelAttribute Security userForLogin, Model model)
     {
-        if(signInHelper.shouldBeLogged(userForLogin))
+        if (signInHelper.shouldBeLogged(userForLogin))
         {
             return "signIn/userPage";
-        }
-        else
+        } else
         {
             model.addAttribute("user", new Security());
             return "registerAndLogin/login";
