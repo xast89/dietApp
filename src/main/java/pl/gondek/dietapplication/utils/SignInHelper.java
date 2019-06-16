@@ -20,28 +20,21 @@ public class SignInHelper {
     public boolean shouldBeLogged(Security security)
     {
         String providedPassword = security.getPassword();
-
         Security securityFromDB = securityRepository.findByLogin(security.getLogin());
 
         if (securityFromDB != null)
         {
-
-            User user = userRepository.findBySecurity_SecurityId(Long.valueOf(securityFromDB.getSecurityId()));
+            User user = userRepository.findBySecurity_SecurityId(securityFromDB.getSecurityId());
 
             String passwordFromDB = securityFromDB.getPassword();
             String saltFromDB = securityFromDB.getSalt();
-
 
             if (PasswordUtils.verifyUserPassword(providedPassword, passwordFromDB, saltFromDB))
             {
                 context.setCurrentUser(user);
                 return true;
             }
-
         }
-
         return false;
     }
-
-
 }

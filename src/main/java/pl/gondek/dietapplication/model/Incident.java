@@ -1,11 +1,10 @@
 package pl.gondek.dietapplication.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -16,9 +15,14 @@ public class Incident {
     private long incident_id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date start;
+    private LocalDate start;
 
     private String reaction;
+
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public String getReaction()
     {
@@ -30,13 +34,35 @@ public class Incident {
         this.reaction = reaction;
     }
 
-    public Date getStart()
+    public LocalDate getStart()
     {
         return start;
     }
 
-    public void setStart(Date start)
+    public void setStart(LocalDate start)
     {
         this.start = start;
     }
+
+    public long getIncident_id()
+    {
+        return incident_id;
+    }
+
+    public void setIncident_id(long incident_id)
+    {
+        this.incident_id = incident_id;
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+
+
 }

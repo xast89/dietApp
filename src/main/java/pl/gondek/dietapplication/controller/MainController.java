@@ -102,6 +102,7 @@ public class MainController {
     @PostMapping(value = "/addReaction")
     public String addReaction(@ModelAttribute Incident incident, BindingResult errors, Model model)
     {
+        incident.setUser(context.getCurrentUser());
 
         incidentRepository.save(incident);
 
@@ -111,8 +112,10 @@ public class MainController {
     @GetMapping("/findAllergens")
     public String findAllergens(Model model)
     {
+        List<Meal> allByUser_userId = mealRepository.findAllByUser_UserId(context.getCurrentUser().getUserId());
+        List<Incident> allByUser_userId1 = incidentRepository.findAllByUser_UserId(context.getCurrentUser().getUserId());
 
-        List<Meal> allergens = allergensFinder.findAllergens(mealRepository, incidentRepository);
+        List<Meal> allergens = allergensFinder.findAllergens(allByUser_userId, allByUser_userId1);
 
         model.addAttribute("reactions", new ReactionList());
         model.addAttribute("incident", new Incident());

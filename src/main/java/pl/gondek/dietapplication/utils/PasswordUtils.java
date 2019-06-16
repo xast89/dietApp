@@ -12,10 +12,9 @@ import java.util.Random;
 public class PasswordUtils {
 
     private static final Random RANDOM = new SecureRandom();
-    private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    private static final int ITERATIONS = 10000;
-    private static final int KEY_LENGTH = 256;
 
+
+    private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     public static String getSalt(int length)
     {
         StringBuilder returnValue = new StringBuilder(length);
@@ -25,6 +24,9 @@ public class PasswordUtils {
         }
         return new String(returnValue);
     }
+
+    private static final int ITERATIONS = 10000;
+    private static final int KEY_LENGTH = 256;
 
     public static byte[] hash(char[] password, byte[] salt)
     {

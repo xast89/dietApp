@@ -4,6 +4,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -15,7 +16,7 @@ public class Meal {
     private long meal_id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date start;
+    private LocalDate start;
 
     private String dish;
 
@@ -44,12 +45,12 @@ public class Meal {
         this.dish = dish;
     }
 
-    public Date getStart()
+    public LocalDate getStart()
     {
         return start;
     }
 
-    public void setStart(Date start)
+    public void setStart(LocalDate start)
     {
         this.start = start;
     }

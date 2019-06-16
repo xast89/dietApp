@@ -23,7 +23,6 @@ public class SignUpProcessor {
         User security = signUpHelper.getSecurityByLogin(userToSignUp.getLogin());
         if (Objects.isNull(security))
         {
-            // Generate Salt. The generated value can be stored in DB.
             String salt = PasswordUtils.getSalt(30);
 
             // Protect user's password. The generated value can be stored in DB.

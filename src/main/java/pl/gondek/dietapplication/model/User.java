@@ -24,6 +24,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Meal> meals;
 
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "user")
+    private Set<Incident> incidents;
+
 
     public Security getSecurity()
     {
@@ -73,5 +77,15 @@ public class User {
     public void setMeals(Set<Meal> meals)
     {
         this.meals = meals;
+    }
+
+    public Set<Incident> getIncidents()
+    {
+        return incidents;
+    }
+
+    public void setIncidents(Set<Incident> incidents)
+    {
+        this.incidents = incidents;
     }
 }
