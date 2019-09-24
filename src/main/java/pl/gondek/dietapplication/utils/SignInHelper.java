@@ -7,6 +7,8 @@ import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.SecurityRepository;
 import pl.gondek.dietapplication.repository.UserRepository;
 
+import java.util.Objects;
+
 @Component
 public class SignInHelper {
 

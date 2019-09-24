@@ -13,7 +13,7 @@ public class FoodList {
 
     public FoodList()
     {
-        this.foods = Arrays.asList(new Food("milk"), new Food("eggs"), new Food("nuts"), new Food("seafood"), new Food("soy"));
+        this.foods = Arrays.asList(new Food("potatoes with pork chop"), new Food("eggs"), new Food("nuts"), new Food("seafood"), new Food("soy"));
         this.str.add("strZiemniak");
         this.str.add("strMleko");
 

@@ -13,7 +13,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
     private String name;
-    private String age;
+    private String gender;
+    private int age;
+    private double height;
+    private double weight;
+    private double bmi;
+    private double bmr;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "SECURITY_ID", referencedColumnName = "SECURITY_ID")
@@ -59,14 +64,64 @@ public class User {
         this.name = name;
     }
 
-    public String getAge()
+    public int getAge()
     {
         return age;
     }
 
-    public void setAge(String age)
+    public void setAge(int age)
     {
         this.age = age;
+    }
+
+    public String getGender()
+    {
+        return gender;
+    }
+
+    public void setGender(String gender)
+    {
+        this.gender = gender;
+    }
+
+    public double getWeight()
+    {
+        return weight;
+    }
+
+    public void setWeight(double weight)
+    {
+        this.weight = weight;
+    }
+
+    public double getHeight()
+    {
+        return height;
+    }
+
+    public void setHeight(double height)
+    {
+        this.height = height;
+    }
+
+    public double getBmi()
+    {
+        return bmi;
+    }
+
+    public void setBmi(double bmi)
+    {
+        this.bmi = bmi;
+    }
+
+    public double getBmr()
+    {
+        return bmr;
+    }
+
+    public void setBmr(double bmr)
+    {
+        this.bmr = bmr;
     }
 
     public Set<Meal> getMeals()

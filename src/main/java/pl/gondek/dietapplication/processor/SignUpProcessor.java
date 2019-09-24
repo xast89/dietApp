@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.gondek.dietapplication.model.Security;
 import pl.gondek.dietapplication.model.User;
-import pl.gondek.dietapplication.utils.Context;
 import pl.gondek.dietapplication.utils.PasswordUtils;
 import pl.gondek.dietapplication.utils.SignUpHelper;
 
@@ -15,8 +14,6 @@ public class SignUpProcessor {
 
     @Autowired
     private SignUpHelper signUpHelper;
-    @Autowired
-    private Context context;
 
     public String signUp(Security userToSignUp)
     {
@@ -38,8 +35,5 @@ public class SignUpProcessor {
 
             return "registerAndLogin/signUp";
         }
-
-
     }
-
 }
