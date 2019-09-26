@@ -58,13 +58,5 @@ public class IndexController {
         {
             return "login";
         }
-
     }
-
-//    @GetMapping("/webjars")
-//    public String logIn()
-//    {
-//        return "redirect:/menu";
-//    }
-
 }
