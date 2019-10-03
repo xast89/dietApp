@@ -33,6 +33,7 @@ public class SignInHelper {
 
             if (PasswordUtils.verifyUserPassword(providedPassword, passwordFromDB, saltFromDB))
             {
+                //TODO: usunac to.
                 context.setCurrentUser(user);
                 return true;
             }
