@@ -16,6 +16,7 @@ import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.IncidentRepository;
 import pl.gondek.dietapplication.repository.MealRepository;
 import pl.gondek.dietapplication.repository.UserRepository;
+import pl.gondek.dietapplication.session.MySessionScope;
 import pl.gondek.dietapplication.utils.AllergensFinder;
 import pl.gondek.dietapplication.utils.Context;
 
@@ -26,15 +27,7 @@ import java.util.Set;
 public class UserPanelController {
 
     @Autowired
-    private MealRepository mealRepository;
-    @Autowired
-    private IncidentRepository incidentRepository;
-    @Autowired
-    private AllergensFinder allergensFinder;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private Context context;
+    private MySessionScope mySessionScope;
 
     @GetMapping("addPersonalData")
     public String addPersonalData(Model model)
@@ -45,7 +38,7 @@ public class UserPanelController {
     }
 
     @PostMapping("addPersonalData")
-    public String loginPost(@ModelAttribute() User userForRegister)
+    public String loginPost(@ModelAttribute() User userForRegister, Model model)
     {
 
 //        User userForLogin = userRepository.findByUsernameAndPassword(userForRegister.getUsername(), userForRegister.getSecurity().getPassword());
@@ -53,6 +46,7 @@ public class UserPanelController {
 //        if(userForLogin != null)
         if (true)
         {
+            model.addAttribute("session222222", mySessionScope.getMyValue());
             return "menu";
         } else
         {
