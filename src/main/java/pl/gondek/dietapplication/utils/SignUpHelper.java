@@ -22,17 +22,11 @@ public class SignUpHelper {
 
         if (byLogin != null)
         {
-//            User s1 = userRepository.findBySecurity_SecurityId(byLogin.getSecurityId());
             user = userRepository.findBySecurity_SecurityId(Long.valueOf(byLogin.getSecurityId()));
-
-//            User s3 = userRepository.findBySecurityId(String.valueOf(byLogin.getSecurityId()));
-//            User s4 = userRepository.findBySecurityId(byLogin.getSecurityId());
-
         }
         return user;
 
     }
-
 
     public void register(Security userToSignUp)
     {

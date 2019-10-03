@@ -1,9 +1,13 @@
 package pl.gondek.dietapplication.model;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
@@ -24,25 +28,14 @@ public class User {
     @JoinColumn(name = "SECURITY_ID", referencedColumnName = "SECURITY_ID")
     private Security security;
 
-
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @OneToMany(mappedBy = "user")
-    private Set<Meal> meals;
-
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @OneToMany(mappedBy = "user")
-    private Set<Incident> incidents;
-
-
-    public Security getSecurity()
-    {
-        return security;
-    }
-
-    public void setSecurity(Security security)
-    {
-        this.security = security;
-    }
+//
+//    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//    @OneToMany(mappedBy = "user")
+//    private Set<Meal> meals;
+//
+//    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//    @OneToMany(mappedBy = "user")
+//    private Set<Incident> incidents;
 
     public long getUserId()
     {
@@ -64,16 +57,6 @@ public class User {
         this.name = name;
     }
 
-    public int getAge()
-    {
-        return age;
-    }
-
-    public void setAge(int age)
-    {
-        this.age = age;
-    }
-
     public String getGender()
     {
         return gender;
@@ -84,14 +67,14 @@ public class User {
         this.gender = gender;
     }
 
-    public double getWeight()
+    public int getAge()
     {
-        return weight;
+        return age;
     }
 
-    public void setWeight(double weight)
+    public void setAge(int age)
     {
-        this.weight = weight;
+        this.age = age;
     }
 
     public double getHeight()
@@ -102,6 +85,16 @@ public class User {
     public void setHeight(double height)
     {
         this.height = height;
+    }
+
+    public double getWeight()
+    {
+        return weight;
+    }
+
+    public void setWeight(double weight)
+    {
+        this.weight = weight;
     }
 
     public double getBmi()
@@ -124,23 +117,33 @@ public class User {
         this.bmr = bmr;
     }
 
-    public Set<Meal> getMeals()
+    public Security getSecurity()
     {
-        return meals;
+        return security;
     }
 
-    public void setMeals(Set<Meal> meals)
+    public void setSecurity(Security security)
     {
-        this.meals = meals;
+        this.security = security;
     }
 
-    public Set<Incident> getIncidents()
-    {
-        return incidents;
-    }
-
-    public void setIncidents(Set<Incident> incidents)
-    {
-        this.incidents = incidents;
-    }
+//    public Set<Meal> getMeals()
+//    {
+//        return meals;
+//    }
+//
+//    public void setMeals(Set<Meal> meals)
+//    {
+//        this.meals = meals;
+//    }
+//
+//    public Set<Incident> getIncidents()
+//    {
+//        return incidents;
+//    }
+//
+//    public void setIncidents(Set<Incident> incidents)
+//    {
+//        this.incidents = incidents;
+//    }
 }
