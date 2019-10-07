@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.gondek.dietapplication.model.Security;
+import pl.gondek.dietapplication.session.MySessionScope;
 import pl.gondek.dietapplication.utils.Context;
 import pl.gondek.dietapplication.utils.SignInHelper;
 
@@ -14,12 +15,15 @@ public class SignInController {
 
     @Autowired
     private SignInHelper signInHelper;
+    @Autowired
+    private MySessionScope mySessionScope;
 
     @PostMapping("/signIn")
     public String signInPost(@ModelAttribute Security userForLogin, Model model)
     {
         if (signInHelper.shouldBeLogged(userForLogin))
         {
+            model.addAttribute("sessionInfo", mySessionScope.getMyValue());
             return "signIn/userPage";
         } else
         {
