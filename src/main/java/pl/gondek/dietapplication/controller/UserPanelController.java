@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.gondek.dietapplication.model.Training;
 import pl.gondek.dietapplication.model.User;
+import pl.gondek.dietapplication.repository.TrainingRepository;
 import pl.gondek.dietapplication.repository.UserRepository;
 import pl.gondek.dietapplication.session.MySessionScope;
 
@@ -19,6 +21,8 @@ public class UserPanelController {
     private UserRepository userRepository;
     @Autowired
     private MySessionScope mySessionScope;
+    @Autowired
+    private TrainingRepository trainingRepository;
 
     @GetMapping("addPersonalData")
     public String addPersonalData(Model model)
@@ -33,6 +37,28 @@ public class UserPanelController {
     {
         User currentUser = mySessionScope.getCurrentUser();
         updateUserProperties(userWithUpdatedInfo, currentUser);
+
+        userRepository.save(currentUser);
+
+        return "signIn/userPage";
+    }
+
+    @GetMapping("createTraining")
+    public String createTraining(Model model)
+    {
+        model.addAttribute("training", new Training());
+
+        return "signIn/createTraining";
+    }
+
+    @PostMapping("createTraining")
+    public String createTrainingPost(@ModelAttribute Training training)
+    {
+        User currentUser = mySessionScope.getCurrentUser();
+        training.setUser(currentUser);
+
+//        trainingRepository.save(training);
+        currentUser.getTraining().add(training);
 
         userRepository.save(currentUser);
 

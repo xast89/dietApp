@@ -22,7 +22,7 @@ public class DataBaseFeeder {
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        addUserToDatabase("admin", "admin");
+//        addUserToDatabase("admin", "admin");
         addUserToDatabase("sa", "sa");
 
     }

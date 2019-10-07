@@ -2,10 +2,7 @@ package pl.gondek.dietapplication.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -13,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "USER")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     private String name;
     private String gender;
@@ -27,19 +24,10 @@ public class User extends BaseEntity{
 //    @JoinColumn(name = "SECURITY_ID", referencedColumnName = "SECURITY_ID")
     private Security security;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Training> training;
 
-//
-//    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-//    @OneToMany(mappedBy = "user")
-//    private Set<Meal> meals;
-//
-//    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-//    @OneToMany(mappedBy = "user")
-//    private Set<Incident> incidents;
-
-        public String getName()
+    public String getName()
     {
         return name;
     }
