@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "USER")
@@ -24,6 +26,9 @@ public class User extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "SECURITY_ID", referencedColumnName = "SECURITY_ID")
     private Security security;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Training> training;
 
 //
 //    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -114,7 +119,17 @@ public class User extends BaseEntity{
         this.security = security;
     }
 
-//    public Set<Meal> getMeals()
+    public Set<Training> getTraining()
+    {
+        return training;
+    }
+
+    public void setTraining(Set<Training> training)
+    {
+        this.training = training;
+    }
+
+    //    public Set<Meal> getMeals()
 //    {
 //        return meals;
 //    }
