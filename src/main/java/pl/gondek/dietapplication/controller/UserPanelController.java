@@ -1,16 +1,14 @@
 package pl.gondek.dietapplication.controller;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.gondek.dietapplication.model.Security;
 import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.UserRepository;
-import pl.gondek.dietapplication.utils.Context;
+import pl.gondek.dietapplication.session.MySessionScope;
 
 import java.util.Objects;
 
@@ -18,9 +16,9 @@ import java.util.Objects;
 public class UserPanelController {
 
     @Autowired
-    private Context context;
-    @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MySessionScope mySessionScope;
 
     @GetMapping("addPersonalData")
     public String addPersonalData(Model model)
@@ -33,8 +31,7 @@ public class UserPanelController {
     @PostMapping("addPersonalData")
     public String addPersonalDataPost(@ModelAttribute User userWithUpdatedInfo)
     {
-        User currentUser = context.getCurrentUser();
-
+        User currentUser = mySessionScope.getCurrentUser();
         updateUserProperties(userWithUpdatedInfo, currentUser);
 
         userRepository.save(currentUser);

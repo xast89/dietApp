@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.gondek.dietapplication.model.Security;
 import pl.gondek.dietapplication.session.MySessionScope;
-import pl.gondek.dietapplication.utils.Context;
 import pl.gondek.dietapplication.utils.SignInHelper;
 
 @Controller
