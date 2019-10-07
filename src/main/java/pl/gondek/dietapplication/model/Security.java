@@ -4,12 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "SECURITY")
-public class Security {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SECURITY_ID")
-    private long securityId;
+public class Security extends BaseEntity {
 
     private String login;
     private String password;
@@ -27,17 +22,6 @@ public class Security {
 
     @OneToOne(mappedBy = "security")
     private User user;
-
-
-    public long getSecurityId()
-    {
-        return securityId;
-    }
-
-    public void setSecurityId(long securityId)
-    {
-        this.securityId = securityId;
-    }
 
     public String getPassword()
     {

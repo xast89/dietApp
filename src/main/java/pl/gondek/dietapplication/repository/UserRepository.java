@@ -5,7 +5,7 @@ import pl.gondek.dietapplication.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findBySecurity_SecurityId(Long id);
+    User findBySecurity_Id(Long id);
 //    User findBySecurity_SecurityId(long id);
 //    User findBySecurityId(String id);
 //    User findBySecurityId(long id);

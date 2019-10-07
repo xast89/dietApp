@@ -11,11 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
-public class User {
+public class User extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
     private String name;
     private String gender;
     private int age;
@@ -25,7 +22,7 @@ public class User {
     private double bmr;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "SECURITY_ID", referencedColumnName = "SECURITY_ID")
+//    @JoinColumn(name = "SECURITY_ID", referencedColumnName = "SECURITY_ID")
     private Security security;
 
 //
@@ -37,17 +34,7 @@ public class User {
 //    @OneToMany(mappedBy = "user")
 //    private Set<Incident> incidents;
 
-    public long getUserId()
-    {
-        return userId;
-    }
-
-    public void setUserId(long userId)
-    {
-        this.userId = userId;
-    }
-
-    public String getName()
+        public String getName()
     {
         return name;
     }

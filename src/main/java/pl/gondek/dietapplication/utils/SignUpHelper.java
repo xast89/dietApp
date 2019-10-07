@@ -22,7 +22,7 @@ public class SignUpHelper {
 
         if (byLogin != null)
         {
-            user = userRepository.findBySecurity_SecurityId(Long.valueOf(byLogin.getSecurityId()));
+            user = userRepository.findBySecurity_Id(Long.valueOf(byLogin.getId()));
         }
         return user;
 

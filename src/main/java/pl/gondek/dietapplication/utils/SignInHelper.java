@@ -7,8 +7,6 @@ import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.SecurityRepository;
 import pl.gondek.dietapplication.repository.UserRepository;
 
-import java.util.Objects;
-
 @Component
 public class SignInHelper {
 
@@ -26,7 +24,7 @@ public class SignInHelper {
 
         if (securityFromDB != null)
         {
-            User user = userRepository.findBySecurity_SecurityId(securityFromDB.getSecurityId());
+            User user = userRepository.findBySecurity_Id(securityFromDB.getId());
 
             String passwordFromDB = securityFromDB.getPassword();
             String saltFromDB = securityFromDB.getSalt();
