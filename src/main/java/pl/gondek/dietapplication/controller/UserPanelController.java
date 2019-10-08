@@ -54,13 +54,8 @@ public class UserPanelController {
     @PostMapping("createTraining")
     public String createTrainingPost(@ModelAttribute Training training)
     {
-        User currentUser = mySessionScope.getCurrentUser();
-        training.setUser(currentUser);
-
-//        trainingRepository.save(training);
-        currentUser.getTraining().add(training);
-
-        userRepository.save(currentUser);
+        training.setUser(mySessionScope.getCurrentUser());
+        trainingRepository.save(training);
 
         return "signIn/userPage";
     }

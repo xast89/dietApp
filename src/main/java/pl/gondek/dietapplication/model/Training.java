@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "TRAINING")
@@ -88,5 +89,26 @@ public class Training extends BaseEntity{
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Training training = (Training) o;
+        return Double.compare(training.legs, legs) == 0 &&
+                Double.compare(training.chest, chest) == 0 &&
+                Double.compare(training.shoulders, shoulders) == 0 &&
+                Double.compare(training.biceps, biceps) == 0 &&
+                Double.compare(training.abbs, abbs) == 0 &&
+                Double.compare(training.deadLift, deadLift) == 0 &&
+                Objects.equals(user, training.user);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(legs, chest, shoulders, biceps, abbs, deadLift, user);
     }
 }
