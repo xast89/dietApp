@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.gondek.dietapplication.model.BaseEntity;
 import pl.gondek.dietapplication.model.Training;
 import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.TrainingRepository;
@@ -16,8 +15,6 @@ import pl.gondek.dietapplication.session.MySessionScope;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 @Controller
 public class UserPanelController {
@@ -60,42 +57,47 @@ public class UserPanelController {
     public String createTrainingPost(@ModelAttribute Training training)
     {
         User currentUser = userRepository.findById(mySessionScope.getCurrentUser().getId()).get();
-
-        training.setUser(currentUser);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        training.setDate(sdf.format(new Date()));
-
-        Optional<Training> oldTrainingFromSameDate = currentUser.getTraining().stream()
-                .filter(tr -> tr.getDate().equalsIgnoreCase(training.getDate()))
-                .findFirst();
-
-        oldTrainingFromSameDate.ifPresent(value -> currentUser.getTraining().remove(value));
+        addRequiredInfo(training, currentUser);
+        removeTrainingFromSameDay(training, currentUser);
         currentUser.getTraining().add(training);
-
         userRepository.save(currentUser);
 
         return "signIn/userPage";
     }
 
+    private void addRequiredInfo(@ModelAttribute Training training, User currentUser)
+    {
+        training.setUser(currentUser);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        training.setDate(sdf.format(new Date()));
+    }
+
+    private void removeTrainingFromSameDay(@ModelAttribute Training training, User currentUser)
+    {
+        currentUser.getTraining().stream()
+                .filter(tr -> tr.getDate().equalsIgnoreCase(training.getDate()))
+                .findFirst().ifPresent(value -> currentUser.getTraining().remove(value));
+    }
+
     private void updateUserProperties(@ModelAttribute User userWithUpdatedInfo, User currentUser)
     {
-        if(userWithUpdatedInfo.getAge() > 10)
+        if (userWithUpdatedInfo.getAge() > 10)
         {
             currentUser.setAge(userWithUpdatedInfo.getAge());
         }
-        if(!Objects.nonNull(userWithUpdatedInfo.getGender()))
+        if (!Objects.nonNull(userWithUpdatedInfo.getGender()))
         {
             currentUser.setGender(userWithUpdatedInfo.getGender());
         }
-        if(userWithUpdatedInfo.getHeight() > 120)
+        if (userWithUpdatedInfo.getHeight() > 120)
         {
             currentUser.setHeight(userWithUpdatedInfo.getHeight());
         }
-        if(Objects.nonNull(userWithUpdatedInfo.getName()))
+        if (Objects.nonNull(userWithUpdatedInfo.getName()))
         {
             currentUser.setName(userWithUpdatedInfo.getName());
         }
-        if(userWithUpdatedInfo.getWeight() > 30)
+        if (userWithUpdatedInfo.getWeight() > 30)
         {
             currentUser.setWeight(userWithUpdatedInfo.getWeight());
         }

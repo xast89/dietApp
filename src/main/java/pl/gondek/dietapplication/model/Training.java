@@ -10,7 +10,6 @@ import java.util.Objects;
 @Table(name = "TRAINING")
 public class Training extends BaseEntity{
 
-    private boolean isActive;
     private double legs;
     private double chest;
     private double shoulders;
@@ -22,16 +21,6 @@ public class Training extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    public boolean isActive()
-    {
-        return isActive;
-    }
-
-    public void setActive(boolean active)
-    {
-        isActive = active;
-    }
 
     public double getLegs()
     {
