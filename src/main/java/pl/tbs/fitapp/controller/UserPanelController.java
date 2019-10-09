@@ -23,8 +23,6 @@ public class UserPanelController {
     private UserRepository userRepository;
     @Autowired
     private MySessionScope mySessionScope;
-    @Autowired
-    private TrainingRepository trainingRepository;
 
     @GetMapping("addPersonalData")
     public String addPersonalData(Model model)
