@@ -7,9 +7,10 @@ import org.springframework.stereotype.Component;
 import pl.gondek.dietapplication.model.Security;
 import pl.gondek.dietapplication.model.Training;
 import pl.gondek.dietapplication.model.User;
-import pl.gondek.dietapplication.processor.SignUpProcessor;
 import pl.gondek.dietapplication.repository.UserRepository;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,6 +46,10 @@ public class DataBaseFeeder {
         training.setAbbs(12);
         training.setLegs(22);
         training.setUser(user);
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        training.setDate("08/10/2019");
+
+
         trainings.add(training);
 
         user.setSecurity(security);

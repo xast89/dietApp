@@ -6,13 +6,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.gondek.dietapplication.model.BaseEntity;
 import pl.gondek.dietapplication.model.Training;
 import pl.gondek.dietapplication.model.User;
 import pl.gondek.dietapplication.repository.TrainingRepository;
 import pl.gondek.dietapplication.repository.UserRepository;
 import pl.gondek.dietapplication.session.MySessionScope;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @Controller
 public class UserPanelController {
@@ -54,16 +59,44 @@ public class UserPanelController {
     @PostMapping("createTraining")
     public String createTrainingPost(@ModelAttribute Training training)
     {
-        User currentUser = mySessionScope.getCurrentUser();
+        User currentUser2 = mySessionScope.getCurrentUser();
+        User currentUser = userRepository.findById(currentUser2.getId()).get();
+
         training.setUser(currentUser);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        training.setDate(sdf.format(new Date()));
+
+
+        Optional<Training> oldTrainingFromSameDate = currentUser.getTraining().stream()
+                .filter(tr -> tr.getDate().equalsIgnoreCase(training.getDate()))
+                .findFirst();
+
+//        oldTrainingFromSameDate.ifPresent(value -> trainingRepository.deleteById(value.getId()));
+
+        if(oldTrainingFromSameDate.isPresent())
+        {
+            trainingRepository.deleteById(oldTrainingFromSameDate.get().getId());
+            currentUser.getTraining().remove(oldTrainingFromSameDate.get());
+        }
+
         currentUser.getTraining().add(training);
-
-//        userRepository.save(currentUser);
-
-        trainingRepository.save(training);
+//        trainingRepository.save(training);
+        userRepository.saveAndFlush(currentUser);
 
         return "signIn/userPage";
     }
+
+//    @GetMapping("delete")
+//    public String deleteTraining(Model model)
+//    {
+//
+//        User currentUser = mySessionScope.getCurrentUser();
+//        currentUser.getTraining().remove(1L);
+//
+//        userRepository.saveAndFlush(currentUser);
+//
+//        return "signIn/userPage";
+//    }
 
     private void updateUserProperties(@ModelAttribute User userWithUpdatedInfo, User currentUser)
     {

@@ -22,10 +22,9 @@ public class User extends BaseEntity {
     private double bmr;
 
     @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "SECURITY_ID", referencedColumnName = "SECURITY_ID")
     private Security security;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",orphanRemoval = true,cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Training> training = new HashSet<>();
 
     public String getName()

@@ -10,16 +10,28 @@ import java.util.Objects;
 @Table(name = "TRAINING")
 public class Training extends BaseEntity{
 
+    private boolean isActive;
     private double legs;
     private double chest;
     private double shoulders;
     private double biceps;
     private double abbs;
     private double deadLift;
+    private String date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public boolean isActive()
+    {
+        return isActive;
+    }
+
+    public void setActive(boolean active)
+    {
+        isActive = active;
+    }
 
     public double getLegs()
     {
@@ -81,6 +93,16 @@ public class Training extends BaseEntity{
         this.deadLift = deadLift;
     }
 
+    public String getDate()
+    {
+        return date;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
     public User getUser()
     {
         return user;
@@ -91,24 +113,4 @@ public class Training extends BaseEntity{
         this.user = user;
     }
 
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Training training = (Training) o;
-        return Double.compare(training.legs, legs) == 0 &&
-                Double.compare(training.chest, chest) == 0 &&
-                Double.compare(training.shoulders, shoulders) == 0 &&
-                Double.compare(training.biceps, biceps) == 0 &&
-                Double.compare(training.abbs, abbs) == 0 &&
-                Double.compare(training.deadLift, deadLift) == 0 &&
-                Objects.equals(user, training.user);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(legs, chest, shoulders, biceps, abbs, deadLift, user);
-    }
 }
