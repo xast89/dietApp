@@ -59,44 +59,23 @@ public class UserPanelController {
     @PostMapping("createTraining")
     public String createTrainingPost(@ModelAttribute Training training)
     {
-        User currentUser2 = mySessionScope.getCurrentUser();
-        User currentUser = userRepository.findById(currentUser2.getId()).get();
+        User currentUser = userRepository.findById(mySessionScope.getCurrentUser().getId()).get();
 
         training.setUser(currentUser);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         training.setDate(sdf.format(new Date()));
 
-
         Optional<Training> oldTrainingFromSameDate = currentUser.getTraining().stream()
                 .filter(tr -> tr.getDate().equalsIgnoreCase(training.getDate()))
                 .findFirst();
 
-//        oldTrainingFromSameDate.ifPresent(value -> trainingRepository.deleteById(value.getId()));
-
-        if(oldTrainingFromSameDate.isPresent())
-        {
-            trainingRepository.deleteById(oldTrainingFromSameDate.get().getId());
-            currentUser.getTraining().remove(oldTrainingFromSameDate.get());
-        }
-
+        oldTrainingFromSameDate.ifPresent(value -> currentUser.getTraining().remove(value));
         currentUser.getTraining().add(training);
-//        trainingRepository.save(training);
-        userRepository.saveAndFlush(currentUser);
+
+        userRepository.save(currentUser);
 
         return "signIn/userPage";
     }
-
-//    @GetMapping("delete")
-//    public String deleteTraining(Model model)
-//    {
-//
-//        User currentUser = mySessionScope.getCurrentUser();
-//        currentUser.getTraining().remove(1L);
-//
-//        userRepository.saveAndFlush(currentUser);
-//
-//        return "signIn/userPage";
-//    }
 
     private void updateUserProperties(@ModelAttribute User userWithUpdatedInfo, User currentUser)
     {
