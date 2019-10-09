@@ -1,11 +1,11 @@
-package pl.gondek.dietapplication.processor;
+package pl.tbs.fitapp.processor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.gondek.dietapplication.model.Security;
-import pl.gondek.dietapplication.model.User;
-import pl.gondek.dietapplication.utils.PasswordUtils;
-import pl.gondek.dietapplication.utils.SignUpHelper;
+import pl.tbs.fitapp.model.Security;
+import pl.tbs.fitapp.model.User;
+import pl.tbs.fitapp.utils.PasswordUtils;
+import pl.tbs.fitapp.utils.SignUpHelper;
 
 import java.util.Objects;
 

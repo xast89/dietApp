@@ -1,8 +1,7 @@
-package pl.gondek.dietapplication;
+package pl.tbs.fitapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 public class DietApplication {

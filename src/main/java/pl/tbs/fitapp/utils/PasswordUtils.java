@@ -1,4 +1,4 @@
-package pl.gondek.dietapplication.utils;
+package pl.tbs.fitapp.utils;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

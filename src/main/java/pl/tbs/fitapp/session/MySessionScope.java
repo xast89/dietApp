@@ -1,10 +1,10 @@
-package pl.gondek.dietapplication.session;
+package pl.tbs.fitapp.session;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
-import pl.gondek.dietapplication.model.User;
+import pl.tbs.fitapp.model.User;
 
 import java.io.Serializable;
 

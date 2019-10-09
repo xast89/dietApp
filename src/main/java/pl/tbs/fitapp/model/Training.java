@@ -1,10 +1,9 @@
-package pl.gondek.dietapplication.model;
+package pl.tbs.fitapp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Entity
 @Table(name = "TRAINING")

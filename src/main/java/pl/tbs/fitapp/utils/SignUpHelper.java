@@ -1,11 +1,11 @@
-package pl.gondek.dietapplication.utils;
+package pl.tbs.fitapp.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.gondek.dietapplication.model.Security;
-import pl.gondek.dietapplication.model.User;
-import pl.gondek.dietapplication.repository.SecurityRepository;
-import pl.gondek.dietapplication.repository.UserRepository;
+import pl.tbs.fitapp.model.Security;
+import pl.tbs.fitapp.model.User;
+import pl.tbs.fitapp.repository.SecurityRepository;
+import pl.tbs.fitapp.repository.UserRepository;
 
 @Component
 public class SignUpHelper {

@@ -1,4 +1,4 @@
-package pl.gondek.dietapplication.model;
+package pl.tbs.fitapp.model;
 
 import javax.persistence.*;
 

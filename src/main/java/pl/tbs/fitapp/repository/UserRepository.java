@@ -1,7 +1,7 @@
-package pl.gondek.dietapplication.repository;
+package pl.tbs.fitapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.gondek.dietapplication.model.User;
+import pl.tbs.fitapp.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

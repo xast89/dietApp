@@ -1,7 +1,7 @@
-package pl.gondek.dietapplication.repository;
+package pl.tbs.fitapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.gondek.dietapplication.model.Security;
+import pl.tbs.fitapp.model.Security;
 
 public interface SecurityRepository extends JpaRepository<Security, Long> {
 

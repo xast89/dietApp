@@ -1,9 +1,9 @@
-package pl.gondek.dietapplication.controller;
+package pl.tbs.fitapp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import pl.gondek.dietapplication.model.Security;
+import pl.tbs.fitapp.model.Security;
 
 @Controller
 public class IndexController {
