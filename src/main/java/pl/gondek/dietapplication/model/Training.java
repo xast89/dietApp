@@ -18,7 +18,7 @@ public class Training extends BaseEntity{
     private double deadLift;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public double getLegs()
