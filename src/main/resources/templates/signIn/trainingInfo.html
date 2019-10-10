@@ -1,18 +1,73 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Diet Application</title>
+    <title>Fit application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-<tr>
-    <td th:text="${training.abbs}" />
-    <td th:text="${training.legs}" />
-    <td th:text="${training.abbs}" />
-    <td th:text="${training.abbs}" />
-    <td th:text="${training.abbs}" />
-</tr>
+<div class="col-md-5 col-md-offset-3">
+    <table class="table table-dark">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">dzien</th>
+            <th scope="col">klatka</th>
+            <th scope="col">biceps</th>
+            <th scope="col">nogi</th>
+            <th scope="col">ramiona</th>
+            <th scope="col">abbs</th>
+            <th scope="col">martwy ciag</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">max</th>
+            <td th:text="${training.chest}"></td>
+            <td th:text="${training.biceps}"></td>
+            <td th:text="${training.legs}"></td>
+            <td th:text="${training.shoulders}"></td>
+            <td th:text="${training.abbs}"></td>
+            <td th:text="${training.deadLift}"></td>
+        </tr>
+        <tr>
+            <th scope="row">1</th>
+            <td th:text="${training.chest}*0.2"></td>
+            <td th:text="${training.biceps}*0.2"></td>
+            <td th:text="${training.legs}*0.2"></td>
+            <td th:text="${training.shoulders}*0.2"></td>
+            <td th:text="${training.abbs}*0.2"></td>
+            <td th:text="${training.deadLift}*0.2"></td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td th:text="${training.chest}*0.4"></td>
+            <td th:text="${training.biceps}*0.4"></td>
+            <td th:text="${training.legs}*0.4"></td>
+            <td th:text="${training.shoulders}*0.4"></td>
+            <td th:text="${training.abbs}*0.4"></td>
+            <td th:text="${training.deadLift}*0.4"></td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td th:text="${training.chest}*0.6"></td>
+            <td th:text="${training.biceps}*0.6"></td>
+            <td th:text="${training.legs}*0.6"></td>
+            <td th:text="${training.shoulders}*0.6"></td>
+            <td th:text="${training.abbs}*0.6"></td>
+            <td th:text="${training.deadLift}*0.6"></td>
+        </tr>
+        <tr>
+            <th scope="row">4</th>
+            <td th:text="${training.chest}*0.8"></td>
+            <td th:text="${training.biceps}*0.8"></td>
+            <td th:text="${training.legs}*0.8"></td>
+            <td th:text="${training.shoulders}*0.8"></td>
+            <td th:text="${training.abbs}*0.8"></td>
+            <td th:text="${training.deadLift}*0.8"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 
 </body>
