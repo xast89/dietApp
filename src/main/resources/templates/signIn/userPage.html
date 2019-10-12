@@ -1,34 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <base href="/">
     <title>Fit application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel = "stylesheet"
-          type = "text/css"
-          href = "css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 
 </head>
 <body>
-<div class="container">
-    <div post_id="menubox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">Menu</div>
-            </div>
-            <div style="padding-top:30px" class="panel-body">
-                <div style="display:none" post_id="login-alert" class="alert alert-danger col-sm-12"></div>
-                <form post_id="loginform" class="form-horizontal" role="form">
-                    <div class="col-sm-12 controls">
-                        <a post_id="btn-dark" href="/addPersonalData" class="btn btn-danger">uzupelnij dane</a>
-                        <a post_id="btn-login2" href="/createTraining" class="btn btn-info">rozpocznij trening</a>
-                        <a post_id="btn-login3" href="/trainingInfo" class="btn btn-warning">rozpiska</a>
 
-                    </div>
-                </form>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6    bg-secondary">
+            <nav class="navbar navbar-dark bg-dark">
+                <a href="/addPersonalData" class="navbar-brand">Uzupelnij dane</a>
+                <a href="/createTraining" class="navbar-brand">Rozpocznij trening</a>
+                <a href="/trainingInfo" class="navbar-brand">Rozpiska</a>
+            </nav>
         </div>
     </div>
+    <div class="col-sm-3"></div>
 </div>
 </body>
 </html>
