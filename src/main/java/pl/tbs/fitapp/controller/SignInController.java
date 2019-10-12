@@ -3,6 +3,7 @@ package pl.tbs.fitapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.tbs.fitapp.model.Security;
@@ -16,6 +17,13 @@ public class SignInController {
     private SignInHelper signInHelper;
     @Autowired
     private MySessionScope mySessionScope;
+
+    @GetMapping("/signIn")
+    public String signInGet(Model model)
+    {
+        model.addAttribute("user", new Security());
+        return "registerAndLogin/login";
+    }
 
     @PostMapping("/signIn")
     public String signInPost(@ModelAttribute Security userForLogin, Model model)
