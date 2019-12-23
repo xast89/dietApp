@@ -33,7 +33,7 @@ public class DataBaseFeeder {
         Security security = new Security();
         security.setPassword(password);
         security.setLogin(login);
-        String salt = PasswordUtils.getSalt(30);
+        String salt = PasswordUtils.generateSalt(30);
         String mySecurePassword = PasswordUtils.generateSecurePassword(security.getPassword(), salt);
         security.setPassword(mySecurePassword);
         security.setSalt(salt);

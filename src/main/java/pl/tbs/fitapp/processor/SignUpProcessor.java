@@ -20,9 +20,8 @@ public class SignUpProcessor {
         User security = signUpHelper.getSecurityByLogin(userToSignUp.getLogin());
         if (Objects.isNull(security))
         {
-            String salt = PasswordUtils.getSalt(30);
+            String salt = PasswordUtils.generateSalt(50);
 
-            // Protect user's password. The generated value can be stored in DB.
             String mySecurePassword = PasswordUtils.generateSecurePassword(userToSignUp.getPassword(), salt);
 
             userToSignUp.setPassword(mySecurePassword);

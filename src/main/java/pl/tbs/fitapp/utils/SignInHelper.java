@@ -8,6 +8,8 @@ import pl.tbs.fitapp.repository.SecurityRepository;
 import pl.tbs.fitapp.repository.UserRepository;
 import pl.tbs.fitapp.session.MySessionScope;
 
+import java.util.Objects;
+
 @Component
 public class SignInHelper {
 
@@ -20,20 +22,18 @@ public class SignInHelper {
 
     public boolean shouldBeLogged(Security security)
     {
-        String providedPassword = security.getPassword();
-        Security securityFromDB = securityRepository.findByLogin(security.getLogin());
+        String passwordFromUser = security.getPassword();
+        Security db_security = securityRepository.findByLogin(security.getLogin());
 
-        if (securityFromDB != null)
+        if (Objects.nonNull(db_security))
         {
-            User user = userRepository.findBySecurity_Id(securityFromDB.getId());
+            User user = userRepository.findBySecurity_Id(db_security.getId());
 
-            String passwordFromDB = securityFromDB.getPassword();
-            String saltFromDB = securityFromDB.getSalt();
+            String passwordFromDB = db_security.getPassword();
+            String saltFromDB = db_security.getSalt();
 
-            if (PasswordUtils.verifyUserPassword(providedPassword, passwordFromDB, saltFromDB))
+            if (PasswordUtils.isCorrectUserPassword(passwordFromUser, passwordFromDB, saltFromDB))
             {
-                //TODO: usunac to.
-//                context.setCurrentUser(user);
                 mySessionScope.setCurrentUser(user);
                 return true;
             }
